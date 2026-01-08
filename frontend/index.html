@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simple Trading App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <h1>Trading App</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Instruments</h2>
+        <button id="load-instruments">Load Instruments</button>
+        <div id="instruments" class="list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Place Order</h2>
+        <form id="order-form" class="form">
+          <label>
+            Symbol
+            <input name="symbol" placeholder="AAPL" required />
+          </label>
+          <label>
+            Side
+            <select name="side" required>
+              <option value="BUY">BUY</option>
+              <option value="SELL">SELL</option>
+            </select>
+          </label>
+          <label>
+            Order Type
+            <select name="orderType" required>
+              <option value="MARKET">MARKET</option>
+              <option value="LIMIT">LIMIT</option>
+            </select>
+          </label>
+          <label>
+            Quantity
+            <input name="quantity" type="number" min="1" required />
+          </label>
+          <label>
+            Price (Limit only)
+            <input name="price" type="number" step="0.01" />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+        <pre id="order-result"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Order Status</h2>
+        <div class="row">
+          <input id="order-id" type="number" placeholder="Order ID" />
+          <button id="check-order">Check</button>
+        </div>
+        <pre id="order-status"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Trades</h2>
+        <button id="load-trades">Load Trades</button>
+        <pre id="trades"></pre>
+      </section>
+
+      <section class="card">
+        <h2>Portfolio</h2>
+        <button id="load-portfolio">Load Portfolio</button>
+        <pre id="portfolio"></pre>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
