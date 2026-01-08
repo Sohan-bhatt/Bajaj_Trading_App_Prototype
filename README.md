@@ -1,11 +1,22 @@
-# Simple Trading App (Bajaj)
+# Bajaj Trading App Prototype
 
 A minimal trading simulator with a FastAPI backend and a static HTML/CSS/JS frontend.
 
 ## Project Structure
+```python
+bajaj/
+├── README.md
+├── .gitignore
+├── backend/
+│   ├── main.py
+│   └── requirements.txt
+└── frontend/
+    ├── index.html
+    ├── style.css
+    └── app.js
 
-- `bajaj/backend` - FastAPI backend
-- `bajaj/frontend` - Static frontend (HTML/CSS/JS)
+```
+
 
 ## Backend
 
@@ -25,16 +36,18 @@ A minimal trading simulator with a FastAPI backend and a static HTML/CSS/JS fron
 
 Install dependencies:
 
-```bash
-git clone <your-repo-url>
-cd <your-repo-name>/bajaj/backend
+```python
+git clone https://github.com/Sohan-bhatt/Bajaj_Trading_App_Prototype.git
+cd Bajaj_Trading_App_Prototype/bajaj/backend
+python -m venv venv              // Create a virtual Environment
+source venv/bin/activate         // Activate the virtual environment
 pip install -r requirements.txt
 ```
 
 ### Run the API
 
 ```bash
-cd <your-repo-name>/bajaj/backend
+cd Bajaj_Trading_App_Prototype/bajaj/backend
 uvicorn main:app --reload
 ```
 
@@ -56,9 +69,15 @@ http://127.0.0.1:8000/api/v1
 
 Open the file directly in a browser:
 
+```python
+Bajaj_Trading_App_Prototype/bajaj/frontend/index.html
 ```
-<your-repo-name>/bajaj/frontend/index.html
+- ## For live server install in VS Code
+```python
+  Ctrl+Shift+X
+  Install "Live Server"
 ```
+#### `Bottom right you will see the "live" option click on it.`
 
 ### Sections
 
