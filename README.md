@@ -4,7 +4,7 @@ A minimal trading simulator with a FastAPI backend and a static HTML/CSS/JS fron
 
 ## Project Structure
 ```python
-bajaj/
+Bajaj_Trading_App_Prototype/
 ├── README.md
 ├── .gitignore
 ├── backend/
