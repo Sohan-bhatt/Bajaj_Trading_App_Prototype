@@ -6,6 +6,10 @@ from datetime import datetime
 
 app = FastAPI(title="Simple Trading API", version="1.0.0")
 
+@app.get("/health")
+def health():
+    return {"ok": True}
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
