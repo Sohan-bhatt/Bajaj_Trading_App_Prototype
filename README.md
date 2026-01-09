@@ -132,6 +132,13 @@ print("Trades:", sdk.list_trades())
 print("Portfolio:", sdk.get_portfolio())
 PY
 ```
+## `RESULT`
+<img width="1147" height="1055" alt="image" src="https://github.com/user-attachments/assets/7e42c0a6-2014-4c31-aab3-c9f190a771ad" />
+<img width="1162" height="1074" alt="image" src="https://github.com/user-attachments/assets/2d87a843-1388-4ec2-8209-c852e955e011" />
+<img width="1294" height="1068" alt="image" src="https://github.com/user-attachments/assets/e9ac902c-f65b-42f9-ac1c-1cb66d1eff8f" />
+
+
+
 
 ## Implementation Notes (Feature-by-Feature)
 
