@@ -1,22 +1,35 @@
 from typing import Any, Dict, List, Optional
+import json
 import requests
 
 
 class TradingSDK:
     """Minimal wrapper SDK for the Simple Trading API."""
 
-    def __init__(self, base_url: str = "http://127.0.0.1:8000/api/v1") -> None:
+    def __init__(
+        self, base_url: str = "http://127.0.0.1:8000/api/v1", debug: bool = False
+    ) -> None:
         self.base_url = base_url.rstrip("/")
+        self.debug = debug
 
     def _get(self, path: str) -> Any:
         resp = requests.get(f"{self.base_url}{path}")
         resp.raise_for_status()
-        return resp.json()
+        data = resp.json()
+        if self.debug:
+            self.pretty(data)
+        return data
 
     def _post(self, path: str, payload: Dict[str, Any]) -> Any:
         resp = requests.post(f"{self.base_url}{path}", json=payload)
         resp.raise_for_status()
-        return resp.json()
+        data = resp.json()
+        if self.debug:
+            self.pretty(data)
+        return data
+
+    def pretty(self, data: Any) -> None:
+        print(json.dumps(data, indent=2, sort_keys=True))
 
     def list_instruments(self) -> List[Dict[str, Any]]:
         return self._get("/instruments")
