@@ -120,16 +120,15 @@ print(sdk.get_portfolio())
 ### SDK Demo (copy-paste)
 
 ```bash
-python - <<'PY'
+ python - <<'PY'
 from sdk import TradingSDK
 
-sdk = TradingSDK("http://127.0.0.1:8000/api/v1")
-print("Instruments:", sdk.list_instruments())
+sdk = TradingSDK("http://127.0.0.1:8000/api/v1", debug=True)
+sdk.list_instruments()
 order = sdk.place_order("AAPL", "BUY", "MARKET", 2)
-print("Order:", order)
-print("Order Status:", sdk.get_order(order["orderId"]))
-print("Trades:", sdk.list_trades())
-print("Portfolio:", sdk.get_portfolio())
+sdk.get_order(order["orderId"])
+sdk.list_trades()
+sdk.get_portfolio()
 PY
 ```
 ## `RESULT`
