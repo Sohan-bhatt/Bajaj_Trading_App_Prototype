@@ -4,17 +4,22 @@ A minimal trading simulator with a FastAPI backend and a static HTML/CSS/JS fron
 
 ## Project Structure
 ```python
-Bajaj_Trading_App_Prototype/
+Bajaj_Trading_App_Prototype/bajaj
 ├── README.md
 ├── .gitignore
 ├── backend/
 │   ├── Dockerfile
 │   ├── main.py
 │   └── requirements.txt
+├── sdk/
+│   ├── __init__.py
+│   ├── requirements.txt
+│   └── trading_sdk.py
 └── frontend/
     ├── index.html
     ├── style.css
     └── app.js
+
 
 ```
 
@@ -92,6 +97,51 @@ Bajaj_Trading_App_Prototype/bajaj/frontend/index.html
 - Data is stored in memory and resets on server restart.
 - Market orders execute immediately at the instrument LTP.
 - Limit orders execute immediately at the provided price.
+
+
+## SDK (Wrapper Client)
+
+Example usage:
+
+```python
+from sdk import TradingSDK
+
+sdk = TradingSDK("http://127.0.0.1:8000/api/v1")
+print(sdk.list_instruments())
+
+order = sdk.place_order("AAPL", "BUY", "MARKET", 2)
+print(order)
+
+print(sdk.get_order(order["orderId"]))
+print(sdk.list_trades())
+print(sdk.get_portfolio())
+```
+
+### SDK Demo (copy-paste)
+
+```bash
+python - <<'PY'
+from sdk import TradingSDK
+
+sdk = TradingSDK("http://127.0.0.1:8000/api/v1")
+print("Instruments:", sdk.list_instruments())
+order = sdk.place_order("AAPL", "BUY", "MARKET", 2)
+print("Order:", order)
+print("Order Status:", sdk.get_order(order["orderId"]))
+print("Trades:", sdk.list_trades())
+print("Portfolio:", sdk.get_portfolio())
+PY
+```
+
+## Implementation Notes (Feature-by-Feature)
+
+- **Instruments**: A fixed in-memory list in `main.py` exposes symbol, exchange, type, and last traded price via `GET /api/v1/instruments`.
+- **Order Placement**: Validates quantity > 0, limit price presence, symbol existence, and SELL holdings. Orders are stored in-memory with an auto-increment ID.
+- **Order Status**: `GET /api/v1/orders/{orderId}` returns the stored order, including status and execution price.
+- **Trade Execution**: Orders are executed immediately; a trade record is generated and appended to the trade list.
+- **Trades**: `GET /api/v1/trades` returns all executed trades in memory.
+- **Portfolio**: Holdings are updated on execution; average price is recalculated for buys and quantities reduced for sells. `GET /api/v1/portfolio` calculates current value using LTP.
+
 
 ## Implementation Notes (Feature-by-Feature)
 
